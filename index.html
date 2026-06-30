@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>arranzer — Comunidad LabVIEW</title>
 <meta name="description" content="arranzer: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
-<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -54,7 +54,7 @@
     border-bottom:1px solid var(--border);
   }
   .nav-inner{
-    max-width:1040px; margin:0 auto; padding:14px 24px;
+    max-width:1040px; margin:0 auto; padding:8px 24px;
     display:flex; align-items:center; justify-content:space-between;
   }
   .brand{
@@ -62,7 +62,7 @@
     text-decoration:none; color:var(--ink);
   }
   .brand-logo{
-    height:46px; width:auto; display:block;
+    height:74px; width:auto; display:block;
   }
   nav.links{display:flex; gap:22px; font-size:.92rem;}
   nav.links a{text-decoration:none; color:var(--ink-soft); font-weight:500;}
@@ -197,7 +197,19 @@
     font-family:'IBM Plex Mono', monospace; font-size:.72rem;
     text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin:0 0 6px;
   }
-  .person h3{margin:0 0 10px; font-size:1.2rem;}
+  .person h3{
+    margin:0 0 10px; font-size:1.2rem;
+    display:flex; align-items:center; gap:9px;
+  }
+  .li-link{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:5px;
+    background:#0A66C2; color:#fff; flex-shrink:0;
+    text-decoration:none;
+    transition:transform .12s, box-shadow .12s;
+  }
+  .li-link:hover{transform:translateY(-1px); box-shadow:0 3px 10px rgba(10,102,194,.35);}
+  .li-link svg{width:14px; height:14px; display:block;}
   .person p{margin:0; color:var(--ink-soft); font-size:.95rem;}
   .edit-hint{
     margin-top:14px; font-size:.78rem; color:var(--wire-float);
@@ -226,7 +238,7 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="#inicio" class="brand"><img src="assets/logo.jpg" alt="ArranzER — LabVIEW Features" class="brand-logo"></a>
+    <a href="#inicio" class="brand"><img src="assets/logo-mark.png" alt="ArranzER — LabVIEW Features" class="brand-logo"></a>
     <nav class="links">
       <a href="#comunidad">Comunidad</a>
       <a href="#proyecto">Proyecto</a>
@@ -331,7 +343,11 @@
     <div class="people">
       <div class="person p1">
         <p class="role">Cofundador · CLD</p>
-        <h3>Jon Arranz</h3>
+        <h3>Jon Arranz
+          <a class="li-link" href="https://www.linkedin.com/in/jarranz002/" target="_blank" rel="noopener" aria-label="LinkedIn de Jon Arranz">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+        </h3>
         <p>
           Desarrollador LabVIEW desde 2011, trabajando en proyectos multidisciplinares. En 2021
           obtuvo la certificación Certified LabVIEW Developer (CLD) y actualmente se está
@@ -345,7 +361,11 @@
       </div>
       <div class="person p2">
         <p class="role">Cofundador · CLA · CPI · LV Champion 🏆</p>
-        <h3>Ederson Ramalho</h3>
+        <h3>Ederson Ramalho
+          <a class="li-link" href="https://www.linkedin.com/in/ramalho-ederson/" target="_blank" rel="noopener" aria-label="LinkedIn de Ederson Ramalho">
+            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+          </a>
+        </h3>
         <p>
           Programa en LabVIEW desde 2009. Tiene un amplio conocimiento en comunicación con
           instrumentos, adquisición de datos y automatización de máquinas. Obtuvo la certificación
