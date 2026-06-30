@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>arranzer — Comunidad LabVIEW</title>
 <meta name="description" content="arranzer: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
+<link rel="icon" type="image/jpeg" href="assets/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -57,15 +58,11 @@
     display:flex; align-items:center; justify-content:space-between;
   }
   .brand{
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:700; font-size:1.05rem;
-    display:flex; align-items:center; gap:10px;
+    display:flex; align-items:center;
     text-decoration:none; color:var(--ink);
   }
-  .brand .dot{
-    width:10px;height:10px;border-radius:50%;
-    background:var(--wire-bool);
-    box-shadow:0 0 0 3px rgba(30,158,85,.18);
+  .brand-logo{
+    height:46px; width:auto; display:block;
   }
   nav.links{display:flex; gap:22px; font-size:.92rem;}
   nav.links a{text-decoration:none; color:var(--ink-soft); font-weight:500;}
@@ -229,7 +226,7 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="#inicio" class="brand"><span class="dot"></span>arranzer</a>
+    <a href="#inicio" class="brand"><img src="assets/logo.jpg" alt="ArranzER — LabVIEW Features" class="brand-logo"></a>
     <nav class="links">
       <a href="#comunidad">Comunidad</a>
       <a href="#proyecto">Proyecto</a>
@@ -333,21 +330,26 @@
     <h2>Quiénes somos</h2>
     <div class="people">
       <div class="person p1">
-        <p class="role">Cofundador</p>
+        <p class="role">Cofundador · CLD</p>
         <h3>Jon</h3>
         <p>
-          <!-- EDITA AQUÍ: tu bio, Jon. 2-4 frases: a qué te dedicas, tu relación
-               con LabVIEW, qué te gustaría que la gente supiera de ti. -->
-          Desarrollador apasionado por la instrumentación virtual y la automatización con LabVIEW.
-          Cofundador de arranzer.
+          Desarrollador LabVIEW desde 2011, trabajando en proyectos multidisciplinares. En 2021
+          obtuvo la certificación Certified LabVIEW Developer (CLD) y actualmente se está
+          preparando para la Certified LabVIEW Architect (CLA). Trabaja en PLD Space, dentro del
+          equipo de Sistemas de Tierra, desarrollando ensayos para los distintos componentes del
+          cohete Miura 5 con LabVIEW. Está ampliando sus habilidades en programación RealTime (RT),
+          DQMH y LVOOP. Le apasionan el espacio (especialmente la astronáutica), la ciencia, la
+          cocina y viajar para conocer culturas diferentes. Siempre dispuesto a escuchar a quien
+          pueda enseñarle algo nuevo e interesante sobre cualquier disciplina.
         </p>
       </div>
       <div class="person p2">
-        <p class="role">Cofundador</p>
-        <h3>Ederson</h3>
+        <p class="role">Cofundador · CLA · CPI · LV Champion 🏆</p>
+        <h3>Ederson Ramalho</h3>
         <p>
-          <!-- EDITA AQUÍ: bio de Ederson -->
-          Ingeniero centrado en sistemas de control y adquisición de datos. Cofundador de arranzer.
+          Programa en LabVIEW desde 2009. Tiene un amplio conocimiento en comunicación con
+          instrumentos, adquisición de datos y automatización de máquinas. Obtuvo la certificación
+          CLA en 2019, CPI en 2020, y fue nombrado LabVIEW Champion 🏆 en 2023.
         </p>
       </div>
     </div>
