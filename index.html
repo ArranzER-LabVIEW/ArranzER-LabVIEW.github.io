@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>arranzer — Comunidad LabVIEW</title>
+<meta name="description" content="arranzer: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    /* ---- TOKENS DE COLOR (inspirados en el panel frontal de LabVIEW y
+       en los colores de cable según tipo de dato del block diagram) ---- */
+    --panel-bg:        #ECECE6;   /* gris "panel frontal" */
+    --panel-bg-2:      #DEDED6;
+    --panel-raised:    #F6F6F1;
+    --ink:             #1E2126;
+    --ink-soft:        #53575C;
+    --wire-int:        #0B5FFF;   /* azul  = integer (I32)   */
+    --wire-float:      #FF8A00;   /* naranja = float/double  */
+    --wire-bool:       #1E9E55;   /* verde = boolean         */
+    --wire-string:     #FF4FA0;   /* rosa  = string          */
+    --wire-cluster:    #7C5CFF;   /* morado = cluster        */
+    --border:          #C7C7BC;
+    --shadow-in:        inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 0 rgba(0,0,0,.06);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--panel-bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(236,236,230,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700; font-size:1.05rem;
+    display:flex; align-items:center; gap:10px;
+    text-decoration:none; color:var(--ink);
+  }
+  .brand .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--wire-bool);
+    box-shadow:0 0 0 3px rgba(30,158,85,.18);
+  }
+  nav.links{display:flex; gap:22px; font-size:.92rem;}
+  nav.links a{text-decoration:none; color:var(--ink-soft); font-weight:500;}
+  nav.links a:hover{color:var(--ink);}
+
+  /* ---------- HERO: diagrama de bloques ---------- */
+  .hero{padding:72px 0 40px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem; text-transform:uppercase; letter-spacing:.12em;
+    color:var(--ink-soft); margin:0 0 14px;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 5vw, 3.1rem);
+    line-height:1.12; margin:0 0 18px; font-weight:700;
+  }
+  .hero h1 .accent{color:var(--wire-int);}
+  .hero p.lead{
+    max-width:560px; color:var(--ink-soft); font-size:1.08rem; margin:0 0 36px;
+  }
+
+  /* el diagrama: terminales conectados por cables de colores */
+  .diagram{
+    position:relative;
+    background:var(--panel-raised);
+    border:1px solid var(--border);
+    border-radius:10px;
+    box-shadow:var(--shadow-in);
+    padding:30px 18px 26px;
+    overflow:hidden;
+  }
+  .diagram svg{display:block; width:100%; height:auto;}
+  .wire{
+    fill:none; stroke-width:3; stroke-linecap:round;
+    stroke-dasharray:600; stroke-dashoffset:600;
+    animation:draw 1.4s ease forwards;
+  }
+  .w1{stroke:var(--wire-int); animation-delay:.05s;}
+  .w2{stroke:var(--wire-float); animation-delay:.22s;}
+  .w3{stroke:var(--wire-bool); animation-delay:.40s;}
+  .w4{stroke:var(--wire-string); animation-delay:.58s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  @media (prefers-reduced-motion:reduce){
+    .wire{animation:none; stroke-dashoffset:0;}
+  }
+  .node{
+    fill:var(--panel-raised); stroke:var(--ink); stroke-width:1.3;
+  }
+  .node-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; fill:var(--ink);
+  }
+  .node-sub{
+    font-family:'IBM Plex Mono', monospace; font-size:9.5px; fill:var(--ink-soft);
+  }
+  .term{
+    cursor:pointer;
+  }
+  .term rect{transition:filter .15s;}
+  .term:hover rect{filter:brightness(.96);}
+
+  /* ---------- SECCIONES tipo "control de panel" ---------- */
+  section{padding:64px 0;}
+  section h2{
+    font-size:1.5rem; margin:0 0 8px; font-weight:700;
+  }
+  .section-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:.74rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .section-tag .swatch{width:9px;height:9px;border-radius:2px;}
+
+  .panel{
+    background:var(--panel-raised);
+    border:1px solid var(--border);
+    border-radius:10px;
+    box-shadow:var(--shadow-in);
+    padding:28px;
+  }
+
+  /* proyectos / github */
+  .repo-card{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:20px; flex-wrap:wrap;
+  }
+  .repo-card .info h3{margin:0 0 6px; font-size:1.1rem;}
+  .repo-card .info p{margin:0; color:var(--ink-soft); font-size:.95rem;}
+  .repo-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:14px;
+  }
+  @media (max-width:680px){.repo-grid{grid-template-columns:1fr;}}
+  .repo-item{
+    background:var(--panel-bg-2); border:1px solid var(--border); border-radius:8px;
+    padding:16px 18px; text-decoration:none; color:var(--ink); display:block;
+    transition:transform .12s, border-color .12s;
+  }
+  .repo-item:hover{transform:translateY(-2px); border-color:var(--ink-soft);}
+  .repo-item h3{
+    margin:0 0 6px; font-size:.98rem; font-family:'IBM Plex Mono', monospace;
+    display:flex; align-items:center; gap:8px;
+  }
+  .repo-item h3 .lang-dot{width:9px;height:9px;border-radius:50%; flex-shrink:0;}
+  .repo-item p{margin:0; font-size:.85rem; color:var(--ink-soft); line-height:1.4;}
+  .repo-item .meta{
+    margin-top:10px; display:flex; gap:14px; font-family:'IBM Plex Mono', monospace;
+    font-size:.74rem; color:var(--ink-soft);
+  }
+
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:.85rem;
+    text-decoration:none; color:#fff; background:var(--ink);
+    padding:11px 20px; border-radius:7px; display:inline-flex; align-items:center; gap:8px;
+    white-space:nowrap;
+    transition:transform .12s, background .12s;
+  }
+  .btn:hover{background:#000; transform:translateY(-1px);}
+  .btn .wire-dot{width:8px;height:8px;border-radius:50%;background:var(--wire-int);}
+
+  /* bios */
+  .people{
+    display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  }
+  @media (max-width:680px){.people{grid-template-columns:1fr;}}
+  .person{
+    background:var(--panel-raised); border:1px solid var(--border);
+    border-radius:10px; padding:24px; box-shadow:var(--shadow-in);
+    border-top:3px solid var(--wire-int);
+  }
+  .person.p2{border-top-color:var(--wire-string);}
+  .person .role{
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin:0 0 6px;
+  }
+  .person h3{margin:0 0 10px; font-size:1.2rem;}
+  .person p{margin:0; color:var(--ink-soft); font-size:.95rem;}
+  .edit-hint{
+    margin-top:14px; font-size:.78rem; color:var(--wire-float);
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  footer{
+    border-top:1px solid var(--border); padding:30px 0; margin-top:20px;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;
+  }
+  footer p{margin:0; font-size:.85rem; color:var(--ink-soft);}
+  footer a{text-decoration:none; font-size:.85rem; color:var(--ink-soft);}
+  footer a:hover{color:var(--ink);}
+
+  .legend{
+    display:flex; gap:18px; flex-wrap:wrap; margin-top:18px;
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem; color:var(--ink-soft);
+  }
+  .legend span{display:inline-flex; align-items:center; gap:6px;}
+  .legend i{width:14px;height:3px; border-radius:2px; display:inline-block;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#inicio" class="brand"><span class="dot"></span>arranzer</a>
+    <nav class="links">
+      <a href="#comunidad">Comunidad</a>
+      <a href="#proyecto">Proyecto</a>
+      <a href="#nosotros">Nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===================== HERO ===================== -->
+  <section id="inicio" class="hero">
+    <p class="eyebrow">// comunidad LabVIEW</p>
+    <h1>Cableamos ideas en <span class="accent">LabVIEW</span>.</h1>
+    <p class="lead">arranzer es un punto de encuentro para gente que diseña, depura y comparte
+      instrumentación virtual. Código abierto, ejemplos reales y una comunidad pequeña que crece cable a cable.</p>
+
+    <div class="diagram">
+      <!-- Diagrama de bloques: 3 terminales conectados, estilo block diagram de LabVIEW -->
+      <svg viewBox="0 0 940 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama: Comunidad conectada a Proyecto en GitHub y a Miembros">
+        <!-- cables -->
+        <path class="wire w1" d="M 170,70 C 280,70 280,70 330,70" />
+        <path class="wire w2" d="M 170,150 C 280,150 280,150 330,150" />
+        <path class="wire w3" d="M 590,70 C 700,70 700,70 770,70" />
+        <path class="wire w4" d="M 590,150 C 700,150 700,150 770,150" />
+        <path class="wire w1" d="M 470,90 C 470,110 470,110 470,130" />
+
+        <!-- terminal: COMUNIDAD -->
+        <g class="term" onclick="window.location.hash='comunidad'">
+          <rect class="node" x="40" y="40" width="130" height="60" rx="6"/>
+          <text class="node-label" x="56" y="65">COMUNIDAD</text>
+          <text class="node-sub" x="56" y="82">arranzer.com</text>
+        </g>
+
+        <!-- terminal central: PROYECTO -->
+        <g class="term" onclick="window.location.hash='proyecto'">
+          <rect class="node" x="330" y="40" width="260" height="140" rx="6"/>
+          <text class="node-label" x="350" y="68">PROYECTO_PRINCIPAL.vi</text>
+          <text class="node-sub" x="350" y="86">repositorio · GitHub</text>
+          <text class="node-sub" x="350" y="155">entradas: ideas, bugs, PRs</text>
+          <text class="node-sub" x="350" y="170">salidas: releases, docs</text>
+        </g>
+
+        <!-- terminal: GITHUB -->
+        <g class="term" onclick="window.open('https://github.com/ArranzER-LabVIEW','_blank')">
+          <rect class="node" x="770" y="40" width="130" height="60" rx="6"/>
+          <text class="node-label" x="788" y="65">GITHUB</text>
+          <text class="node-sub" x="788" y="82">ver código</text>
+        </g>
+
+        <!-- terminal: MIEMBROS -->
+        <g class="term" onclick="window.location.hash='nosotros'">
+          <rect class="node" x="770" y="120" width="130" height="60" rx="6"/>
+          <text class="node-label" x="788" y="145">MIEMBROS</text>
+          <text class="node-sub" x="788" y="162">Jon · Ederson</text>
+        </g>
+      </svg>
+
+      <div class="legend">
+        <span><i style="background:var(--wire-int)"></i> Comunidad → Proyecto</span>
+        <span><i style="background:var(--wire-bool)"></i> Proyecto → GitHub</span>
+        <span><i style="background:var(--wire-string)"></i> Proyecto → Miembros</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMUNIDAD ===================== -->
+  <section id="comunidad">
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: comunidad</p>
+    <h2>¿Qué es arranzer?</h2>
+    <div class="panel">
+      <p style="margin:0; color:var(--ink-soft);">
+        <!-- EDITA AQUÍ: cuenta en 2-3 frases qué es la comunidad, a quién va dirigida
+             y qué pueden encontrar (ejemplos de código, foro, eventos, etc.) -->
+        Somos un grupo de desarrolladores de LabVIEW que comparte proyectos, patrones de diseño
+        y soluciones a problemas reales de instrumentación virtual. Si trabajas con DAQ, control
+        de instrumentos, o simplemente te gusta ordenar cables de colores, este es tu sitio.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===================== PROYECTOS / GITHUB ===================== -->
+  <section id="proyecto">
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-bool)"></span>tipo: repositorio[]</p>
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
+      <h2 style="margin:0;">Nuestros proyectos</h2>
+      <!-- EDITA AQUÍ si el nombre de la organización no es "arranzer" -->
+      <a class="btn" href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">
+        <span class="wire-dot"></span> Ver organización en GitHub
+      </a>
+    </div>
+
+    <div id="repos" class="panel">
+      <p class="mono" style="margin:0; color:var(--ink-soft); font-size:.85rem;">Cargando repositorios…</p>
+    </div>
+  </section>
+
+  <!-- ===================== NOSOTROS ===================== -->
+  <section id="nosotros">
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-string)"></span>tipo: cluster</p>
+    <h2>Quiénes somos</h2>
+    <div class="people">
+      <div class="person p1">
+        <p class="role">Cofundador</p>
+        <h3>Jon</h3>
+        <p>
+          <!-- EDITA AQUÍ: tu bio, Jon. 2-4 frases: a qué te dedicas, tu relación
+               con LabVIEW, qué te gustaría que la gente supiera de ti. -->
+          Desarrollador apasionado por la instrumentación virtual y la automatización con LabVIEW.
+          Cofundador de arranzer.
+        </p>
+      </div>
+      <div class="person p2">
+        <p class="role">Cofundador</p>
+        <h3>Ederson</h3>
+        <p>
+          <!-- EDITA AQUÍ: bio de Ederson -->
+          Ingeniero centrado en sistemas de control y adquisición de datos. Cofundador de arranzer.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year"></span> arranzer — comunidad LabVIEW</p>
+    <a href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">github.com/ArranzER-LabVIEW</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Lista automática de repos de la organización ----
+  // EDITA AQUÍ si el nombre de la organización no es "arranzer"
+  const GITHUB_ORG = 'ArranzER-LabVIEW';
+
+  const langColors = {
+    'LabVIEW':'#FED72B', 'JavaScript':'#f1e05a', 'Python':'#3572A5',
+    'C':'#555555', 'C++':'#f34b7d', 'HTML':'#e34c26', 'CSS':'#563d7c',
+    'Shell':'#89e051', 'Java':'#b07219'
+  };
+
+  async function loadRepos(){
+    const container = document.getElementById('repos');
+    try{
+      const res = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?sort=updated&per_page=12`);
+      if(!res.ok) throw new Error('No se pudo leer la organización');
+      const repos = await res.json();
+
+      if(!Array.isArray(repos) || repos.length === 0){
+        container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
+          Todavía no hay repositorios públicos en <strong>${GITHUB_ORG}</strong>.</p>`;
+        return;
+      }
+
+      container.innerHTML = `<div class="repo-grid">` + repos.map(r => {
+        const color = langColors[r.language] || '#9CA3AF';
+        const desc = r.description ? r.description : 'Sin descripción todavía.';
+        return `
+          <a class="repo-item" href="${r.html_url}" target="_blank" rel="noopener">
+            <h3><span class="lang-dot" style="background:${color}"></span>${r.name}</h3>
+            <p>${desc}</p>
+            <div class="meta">
+              <span>★ ${r.stargazers_count}</span>
+              <span>${r.language || '—'}</span>
+            </div>
+          </a>`;
+      }).join('') + `</div>`;
+
+    }catch(err){
+      container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
+        No se han podido cargar los repositorios ahora mismo. Visita
+        <a href="https://github.com/${GITHUB_ORG}" target="_blank" rel="noopener">github.com/${GITHUB_ORG}</a> directamente.</p>`;
+    }
+  }
+  loadRepos();
+</script>
+
+</body>
+</html>
