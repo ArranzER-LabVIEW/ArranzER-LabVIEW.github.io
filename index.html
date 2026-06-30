@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>arranzer — Comunidad LabVIEW</title>
-<meta name="description" content="arranzer: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
+<title>ArranzER — Comunidad LabVIEW</title>
+<meta name="description" content="ArranzER: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,18 @@
     text-decoration:none; color:var(--ink);
   }
   .brand-logo{
-    height:74px; width:auto; display:block;
+    height:54px; width:auto; display:block;
+  }
+  .brand-text{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:700; font-size:1.3rem;
+    margin-left:6px;
+    background:linear-gradient(90deg, var(--wire-int) 0%, var(--wire-int) 45%, var(--wire-bool) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brand-text .er{
+    background:linear-gradient(90deg, var(--wire-int), var(--wire-bool));
+    -webkit-background-clip:text; background-clip:text;
   }
   nav.links{display:flex; gap:22px; font-size:.92rem;}
   nav.links a{text-decoration:none; color:var(--ink-soft); font-weight:500;}
@@ -238,7 +249,10 @@
 
 <header class="nav">
   <div class="nav-inner">
-    <a href="#inicio" class="brand"><img src="assets/logo-mark.png" alt="ArranzER — LabVIEW Features" class="brand-logo"></a>
+    <a href="#inicio" class="brand">
+      <img src="assets/logo-mark.png" alt="" class="brand-logo">
+      <span class="brand-text">Arranz<span class="er">ER</span></span>
+    </a>
     <nav class="links">
       <a href="#comunidad">Comunidad</a>
       <a href="#proyecto">Proyecto</a>
@@ -253,7 +267,7 @@
   <section id="inicio" class="hero">
     <p class="eyebrow">// comunidad LabVIEW</p>
     <h1>Cableamos ideas en <span class="accent">LabVIEW</span>.</h1>
-    <p class="lead">arranzer es un punto de encuentro para gente que diseña, depura y comparte
+    <p class="lead">ArranzER es un punto de encuentro para gente que diseña, depura y comparte
       instrumentación virtual. Código abierto, ejemplos reales y una comunidad pequeña que crece cable a cable.</p>
 
     <div class="diagram">
@@ -308,7 +322,7 @@
   <!-- ===================== COMUNIDAD ===================== -->
   <section id="comunidad">
     <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: comunidad</p>
-    <h2>¿Qué es arranzer?</h2>
+    <h2>¿Qué es ArranzER?</h2>
     <div class="panel">
       <p style="margin:0; color:var(--ink-soft);">
         <!-- EDITA AQUÍ: cuenta en 2-3 frases qué es la comunidad, a quién va dirigida
@@ -379,7 +393,7 @@
 
 <footer>
   <div class="wrap">
-    <p>© <span id="year"></span> arranzer — comunidad LabVIEW</p>
+    <p>© <span id="year"></span> ArranzER — comunidad LabVIEW</p>
     <a href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">github.com/ArranzER-LabVIEW</a>
   </div>
 </footer>
