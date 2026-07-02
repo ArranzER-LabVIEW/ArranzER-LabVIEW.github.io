@@ -23,7 +23,7 @@
     --wire-float:      #FF8A00;   /* naranja = float/double  */
     --wire-bool:       #1E9E55;   /* verde = boolean         */
     --wire-string:     #FF4FA0;   /* rosa  = string          */
-    --wire-cluster:    #7C5CFF;   /* morado = cluster        */
+    --wire-cluster:    #8B5A2B;   /* marrón = cluster        */
     --border:          #C7C7BC;
     --shadow-in:        inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 0 rgba(0,0,0,.06);
   }
@@ -90,7 +90,7 @@
     font-size:clamp(2rem, 5vw, 3.1rem);
     line-height:1.12; margin:0 0 18px; font-weight:700;
   }
-  .hero h1 .accent{color:var(--wire-int);}
+  .hero h1 .accent{color:inherit;}
   .hero p.lead{
     max-width:560px; color:var(--ink-soft); font-size:1.08rem; margin:0 0 36px;
   }
@@ -204,12 +204,23 @@
     border-top:3px solid var(--wire-int);
   }
   .person.p2{border-top-color:var(--wire-string);}
+  .person-head{
+    display:flex; align-items:center; gap:16px; margin-bottom:14px;
+  }
+  .avatar{
+    width:64px; height:64px; border-radius:50%;
+    object-fit:cover; flex-shrink:0;
+    border:2px solid var(--panel-raised);
+    box-shadow:0 0 0 2px var(--wire-int);
+  }
+  .person.p2 .avatar{box-shadow:0 0 0 2px var(--wire-string);}
+  .person-head-text{min-width:0;}
   .person .role{
     font-family:'IBM Plex Mono', monospace; font-size:.72rem;
-    text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin:0 0 6px;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin:0 0 4px;
   }
   .person h3{
-    margin:0 0 10px; font-size:1.2rem;
+    margin:0; font-size:1.2rem;
     display:flex; align-items:center; gap:9px;
   }
   .li-link{
@@ -320,7 +331,7 @@
 
   <!-- ===================== COMUNIDAD ===================== -->
   <section id="comunidad">
-    <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: comunidad</p>
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-string)"></span>tipo: string</p>
     <h2>¿Qué es ArranzER?</h2>
     <div class="panel">
       <p style="margin:0; color:var(--ink-soft);">
@@ -335,7 +346,7 @@
 
   <!-- ===================== PROYECTOS / GITHUB ===================== -->
   <section id="proyecto">
-    <p class="section-tag"><span class="swatch" style="background:var(--wire-bool)"></span>tipo: repositorio[]</p>
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: array[]</p>
     <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:16px; flex-wrap:wrap; margin-bottom:18px;">
       <h2 style="margin:0;">Nuestros proyectos</h2>
       <!-- EDITA AQUÍ si el nombre de la organización no es "arranzer" -->
@@ -351,16 +362,21 @@
 
   <!-- ===================== NOSOTROS ===================== -->
   <section id="nosotros">
-    <p class="section-tag"><span class="swatch" style="background:var(--wire-string)"></span>tipo: cluster</p>
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-cluster)"></span>tipo: cluster</p>
     <h2>Quiénes somos</h2>
     <div class="people">
       <div class="person p1">
-        <p class="role">Cofundador · CLD</p>
-        <h3>Jon Arranz
-          <a class="li-link" href="https://www.linkedin.com/in/jarranz002/" target="_blank" rel="noopener" aria-label="LinkedIn de Jon Arranz">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
-        </h3>
+        <div class="person-head">
+          <img src="assets/jon.jpg" alt="Foto de Jon Arranz" class="avatar">
+          <div class="person-head-text">
+            <p class="role">Cofundador · CLD</p>
+            <h3>Jon Arranz
+              <a class="li-link" href="https://www.linkedin.com/in/jarranz002/" target="_blank" rel="noopener" aria-label="LinkedIn de Jon Arranz">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+            </h3>
+          </div>
+        </div>
         <p>
           Desarrollador LabVIEW desde 2011, trabajando en proyectos multidisciplinares. En 2021
           obtuvo la certificación Certified LabVIEW Developer (CLD) y actualmente se está
@@ -373,12 +389,17 @@
         </p>
       </div>
       <div class="person p2">
-        <p class="role">Cofundador · CLA · CPI · LV Champion 🏆</p>
-        <h3>Ederson Ramalho
-          <a class="li-link" href="https://www.linkedin.com/in/ramalho-ederson/" target="_blank" rel="noopener" aria-label="LinkedIn de Ederson Ramalho">
-            <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
-          </a>
-        </h3>
+        <div class="person-head">
+          <img src="assets/ederson.jpg" alt="Foto de Ederson Ramalho" class="avatar">
+          <div class="person-head-text">
+            <p class="role">Cofundador · CLA · CPI · LV Champion 🏆</p>
+            <h3>Ederson Ramalho
+              <a class="li-link" href="https://www.linkedin.com/in/ramalho-ederson/" target="_blank" rel="noopener" aria-label="LinkedIn de Ederson Ramalho">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+            </h3>
+          </div>
+        </div>
         <p>
           Programa en LabVIEW desde 2009. Tiene un amplio conocimiento en comunicación con
           instrumentos, adquisición de datos y automatización de máquinas. Obtuvo la certificación
