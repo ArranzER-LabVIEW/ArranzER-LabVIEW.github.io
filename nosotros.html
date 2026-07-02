@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiénes somos — ArranzER</title>
+<meta name="description" content="Conoce a Jon Arranz y Ederson Ramalho, cofundadores de la comunidad LabVIEW ArranzER.">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --panel-bg:        #ECECE6;
+    --panel-bg-2:      #DEDED6;
+    --panel-raised:    #F6F6F1;
+    --ink:             #1E2126;
+    --ink-soft:        #53575C;
+    --wire-int:        #0B5FFF;
+    --wire-float:      #FF8A00;
+    --wire-bool:       #1E9E55;
+    --wire-string:     #FF4FA0;
+    --wire-cluster:    #8B5A2B;
+    --border:          #C7C7BC;
+    --shadow-in:        inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 0 rgba(0,0,0,.06);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--panel-bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(236,236,230,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; text-decoration:none; color:var(--ink);}
+  .brand-logo{height:74px; width:auto; display:block;}
+  nav.links{display:flex; gap:22px; font-size:.92rem;}
+  nav.links a{text-decoration:none; color:var(--ink-soft); font-weight:500;}
+  nav.links a:hover{color:var(--ink);}
+  nav.links a.active{color:var(--ink);}
+
+  .page-head{padding:56px 0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem; text-transform:uppercase; letter-spacing:.12em;
+    color:var(--ink-soft); margin:0 0 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .back-link{
+    text-decoration:none; color:var(--ink-soft); display:inline-flex; align-items:center; gap:5px;
+  }
+  .back-link:hover{color:var(--ink);}
+  .page-head h1{
+    font-size:clamp(1.8rem, 4.5vw, 2.6rem);
+    line-height:1.15; margin:0 0 14px; font-weight:700;
+  }
+  .page-head p.lead{max-width:620px; color:var(--ink-soft); font-size:1.05rem; margin:0;}
+
+  .section-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace; font-size:.74rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft);
+    margin:0 0 14px;
+  }
+  .section-tag .swatch{width:9px;height:9px;border-radius:2px;}
+
+  section{padding:0 0 64px;}
+
+  /* ---- bios ---- */
+  .people{
+    display:grid; grid-template-columns:1fr 1fr; gap:20px;
+  }
+  @media (max-width:680px){.people{grid-template-columns:1fr;}}
+  .person{
+    background:var(--panel-raised); border:1px solid var(--border);
+    border-radius:10px; padding:24px; box-shadow:var(--shadow-in);
+    border-top:3px solid var(--wire-int);
+  }
+  .person.p2{border-top-color:var(--wire-string);}
+  .person-head{
+    display:flex; align-items:center; gap:16px; margin-bottom:14px;
+  }
+  .avatar{
+    width:64px; height:64px; border-radius:50%;
+    object-fit:cover; flex-shrink:0;
+    border:2px solid var(--panel-raised);
+    box-shadow:0 0 0 2px var(--wire-int);
+  }
+  .person.p2 .avatar{box-shadow:0 0 0 2px var(--wire-string);}
+  .person-head-text{min-width:0;}
+  .person .role{
+    font-family:'IBM Plex Mono', monospace; font-size:.72rem;
+    text-transform:uppercase; letter-spacing:.1em; color:var(--ink-soft); margin:0 0 4px;
+  }
+  .person h3{
+    margin:0; font-size:1.2rem;
+    display:flex; align-items:center; gap:9px;
+  }
+  .li-link{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:24px; height:24px; border-radius:5px;
+    background:#0A66C2; color:#fff; flex-shrink:0;
+    text-decoration:none;
+    transition:transform .12s, box-shadow .12s;
+  }
+  .li-link:hover{transform:translateY(-1px); box-shadow:0 3px 10px rgba(10,102,194,.35);}
+  .li-link svg{width:14px; height:14px; display:block;}
+  .person p{margin:0; color:var(--ink-soft); font-size:.95rem;}
+
+  footer{border-top:1px solid var(--border); padding:30px 0; margin-top:20px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  footer p{margin:0; font-size:.85rem; color:var(--ink-soft);}
+  footer a{text-decoration:none; font-size:.85rem; color:var(--ink-soft);}
+  footer a:hover{color:var(--ink);}
+  .cc-line{display:flex; align-items:center; gap:8px;}
+  .cc-icons{display:flex; align-items:center; gap:3px; flex-shrink:0;}
+  .cc-icons svg{width:20px; height:20px; display:block;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html#inicio" class="brand">
+      <img src="assets/logo-mark.png" alt="ArranzER — LabVIEW Features" class="brand-logo">
+    </a>
+    <nav class="links">
+      <a href="index.html#comunidad">Comunidad</a>
+      <a href="proyectos.html">Proyectos</a>
+      <a href="nosotros.html" class="active">Nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <p class="eyebrow">
+      <a class="back-link" href="index.html">← volver al inicio</a> · // quiénes somos
+    </p>
+    <h1>Quiénes somos</h1>
+    <p class="lead">Las dos personas detrás de ArranzER.</p>
+  </div>
+
+  <section>
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-cluster)"></span>tipo: cluster</p>
+
+    <div class="people">
+      <div class="person p1">
+        <div class="person-head">
+          <img src="assets/jon.jpg" alt="Foto de Jon Arranz" class="avatar">
+          <div class="person-head-text">
+            <p class="role">Cofundador · CLD</p>
+            <h3>Jon Arranz
+              <a class="li-link" href="https://www.linkedin.com/in/jarranz002/" target="_blank" rel="noopener" aria-label="LinkedIn de Jon Arranz">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+            </h3>
+          </div>
+        </div>
+        <p>
+          Desarrollador LabVIEW desde 2011, trabajando en proyectos multidisciplinares. En 2021
+          obtuvo la certificación Certified LabVIEW Developer (CLD) y actualmente se está
+          preparando para la Certified LabVIEW Architect (CLA). Trabaja en PLD Space, dentro del
+          equipo de Sistemas de Tierra, desarrollando ensayos para los distintos componentes del
+          cohete Miura 5 con LabVIEW. Está ampliando sus habilidades en programación RealTime (RT),
+          DQMH y LVOOP. Le apasionan el espacio (especialmente la astronáutica), la ciencia, la
+          cocina y viajar para conocer culturas diferentes. Siempre dispuesto a escuchar a quien
+          pueda enseñarle algo nuevo e interesante sobre cualquier disciplina.
+        </p>
+      </div>
+      <div class="person p2">
+        <div class="person-head">
+          <img src="assets/ederson.jpg" alt="Foto de Ederson Ramalho" class="avatar">
+          <div class="person-head-text">
+            <p class="role">Cofundador · CLA · CPI · LV Champion 🏆</p>
+            <h3>Ederson Ramalho
+              <a class="li-link" href="https://www.linkedin.com/in/ramalho-ederson/" target="_blank" rel="noopener" aria-label="LinkedIn de Ederson Ramalho">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+              </a>
+            </h3>
+          </div>
+        </div>
+        <p>
+          Programa en LabVIEW desde 2009. Tiene un amplio conocimiento en comunicación con
+          instrumentos, adquisición de datos y automatización de máquinas. Obtuvo la certificación
+          CLA en 2019, CPI en 2020, y fue nombrado LabVIEW Champion 🏆 en 2023.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="cc-line">
+      <span class="cc-icons" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M9.8 10.1c-.35-.7-.95-1.1-1.75-1.1-1.35 0-2.25 1-2.25 2.5s.9 2.5 2.25 2.5c.85 0 1.45-.4 1.8-1.15M17.7 10.1c-.35-.7-.95-1.1-1.75-1.1-1.35 0-2.25 1-2.25 2.5s.9 2.5 2.25 2.5c.85 0 1.45-.4 1.8-1.15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M12 6.5 8 12h2.4v5.5h3.2V12H16z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor" font-family="IBM Plex Mono, monospace">NC</text></svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M7 9.5 12 6l5 3.5M7 14.5 12 18l5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </span>
+      <span><span id="year"></span> ArranzER — comunidad LabVIEW · contenido bajo
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
+      </span>
+    </p>
+    <a href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">github.com/ArranzER-LabVIEW</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
