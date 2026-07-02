@@ -27,12 +27,16 @@
   }
 
   *{box-sizing:border-box;}
+  html, body{height:100%;}
   body{
     margin:0;
     background:var(--panel-bg);
     color:var(--ink);
     font-family:'IBM Plex Sans', sans-serif;
     line-height:1.55;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
   }
   h1,h2,h3,.mono{
     font-family:'IBM Plex Mono', monospace;
@@ -42,6 +46,7 @@
   img{max-width:100%;}
 
   .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+  main.wrap{flex:1;}
 
   header.nav{
     position:sticky; top:0; z-index:50;
