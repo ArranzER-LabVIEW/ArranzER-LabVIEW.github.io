@@ -413,8 +413,13 @@
   async function loadRepos(){
     const container = document.getElementById('repos');
     try{
-      const res = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?sort=updated&per_page=12`);
-      if(!res.ok) throw new Error('No se pudo leer la organización');
+      // Probamos primero como organización; si no existe como tal (404),
+      // reintentamos como cuenta de usuario normal de GitHub.
+      let res = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?sort=updated&per_page=12`);
+      if(res.status === 404){
+        res = await fetch(`https://api.github.com/users/${GITHUB_ORG}/repos?sort=updated&per_page=12`);
+      }
+      if(!res.ok) throw new Error(`GitHub respondió con estado ${res.status}`);
       const repos = await res.json();
 
       if(!Array.isArray(repos) || repos.length === 0){
@@ -439,7 +444,7 @@
 
     }catch(err){
       container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
-        No se han podido cargar los repositorios ahora mismo. Visita
+        No se han podido cargar los repositorios ahora mismo (${err.message}). Visita
         <a href="https://github.com/${GITHUB_ORG}" target="_blank" rel="noopener">github.com/${GITHUB_ORG}</a> directamente.</p>`;
     }
   }
