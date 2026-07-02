@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proyectos — ArranzER</title>
+<meta name="description" content="Todos los repositorios de la comunidad ArranzER en GitHub.">
+<link rel="icon" type="image/png" href="assets/logo-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+
+  :root{
+    --panel-bg:        #ECECE6;
+    --panel-bg-2:      #DEDED6;
+    --panel-raised:    #F6F6F1;
+    --ink:             #1E2126;
+    --ink-soft:        #53575C;
+    --wire-int:        #0B5FFF;
+    --wire-float:      #FF8A00;
+    --wire-bool:       #1E9E55;
+    --wire-string:     #FF4FA0;
+    --wire-cluster:    #8B5A2B;
+    --border:          #C7C7BC;
+    --shadow-in:        inset 0 1px 0 rgba(255,255,255,.7), inset 0 -2px 0 rgba(0,0,0,.06);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--panel-bg);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  h1,h2,h3,.mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:.01em;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+
+  .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(236,236,230,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:1040px; margin:0 auto; padding:8px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{display:flex; align-items:center; text-decoration:none; color:var(--ink);}
+  .brand-logo{height:74px; width:auto; display:block;}
+  nav.links{display:flex; gap:22px; font-size:.92rem;}
+  nav.links a{text-decoration:none; color:var(--ink-soft); font-weight:500;}
+  nav.links a:hover{color:var(--ink);}
+  nav.links a.active{color:var(--ink);}
+
+  .page-head{padding:56px 0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem; text-transform:uppercase; letter-spacing:.12em;
+    color:var(--ink-soft); margin:0 0 14px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .back-link{
+    text-decoration:none; color:var(--ink-soft); display:inline-flex; align-items:center; gap:5px;
+  }
+  .back-link:hover{color:var(--ink);}
+  .page-head h1{
+    font-size:clamp(1.8rem, 4.5vw, 2.6rem);
+    line-height:1.15; margin:0 0 14px; font-weight:700;
+  }
+  .page-head p.lead{max-width:620px; color:var(--ink-soft); font-size:1.05rem; margin:0;}
+
+  section{padding:0 0 64px;}
+
+  .panel{
+    background:var(--panel-raised);
+    border:1px solid var(--border);
+    border-radius:10px;
+    box-shadow:var(--shadow-in);
+    padding:28px;
+  }
+
+  .toolbar{
+    display:flex; gap:12px; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; margin-bottom:20px;
+  }
+  .count-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:.8rem; color:var(--ink-soft);
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-weight:600; font-size:.85rem;
+    text-decoration:none; color:#fff; background:var(--ink);
+    padding:11px 20px; border-radius:7px; display:inline-flex; align-items:center; gap:8px;
+    white-space:nowrap;
+    transition:transform .12s, background .12s;
+  }
+  .btn:hover{background:#000; transform:translateY(-1px);}
+  .btn .wire-dot{width:8px;height:8px;border-radius:50%;background:var(--wire-int);}
+
+  /* ---- tarjetas extendidas de repos ---- */
+  .repo-list{display:flex; flex-direction:column; gap:16px;}
+  .repo-card{
+    background:var(--panel-bg-2); border:1px solid var(--border); border-radius:10px;
+    padding:22px 24px; transition:transform .12s, border-color .12s;
+    border-left:4px solid var(--wire-int);
+  }
+  .repo-card:hover{transform:translateY(-2px); border-color:var(--ink-soft);}
+  .repo-card .top-row{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap;
+  }
+  .repo-card h2.repo-name{
+    margin:0 0 6px; font-size:1.15rem; font-family:'IBM Plex Mono', monospace;
+    display:flex; align-items:center; gap:9px;
+  }
+  .repo-card h2.repo-name a{text-decoration:none; color:var(--ink);}
+  .repo-card h2.repo-name a:hover{text-decoration:underline;}
+  .lang-dot{width:10px;height:10px;border-radius:50%; flex-shrink:0; display:inline-block;}
+  .fork-badge{
+    font-family:'IBM Plex Mono', monospace; font-size:.68rem; color:var(--ink-soft);
+    background:var(--panel-raised); border:1px solid var(--border);
+    padding:2px 8px; border-radius:20px;
+  }
+  .repo-card .desc{margin:6px 0 14px; color:var(--ink-soft); font-size:.95rem; max-width:680px;}
+  .repo-topics{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px;}
+  .topic-pill{
+    font-family:'IBM Plex Mono', monospace; font-size:.7rem;
+    background:rgba(11,95,255,.08); color:var(--wire-int);
+    padding:3px 10px; border-radius:20px; border:1px solid rgba(11,95,255,.2);
+  }
+  .repo-meta{
+    display:flex; flex-wrap:wrap; gap:18px;
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem; color:var(--ink-soft);
+  }
+  .repo-meta span{display:inline-flex; align-items:center; gap:5px;}
+  .repo-actions{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;}
+  .repo-actions a{
+    font-family:'IBM Plex Mono', monospace; font-size:.78rem; text-decoration:none;
+    color:var(--ink); border:1px solid var(--border); padding:6px 14px; border-radius:6px;
+    background:var(--panel-raised); transition:border-color .12s;
+  }
+  .repo-actions a:hover{border-color:var(--ink-soft);}
+
+  footer{border-top:1px solid var(--border); padding:30px 0; margin-top:20px;}
+  footer .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;}
+  footer p{margin:0; font-size:.85rem; color:var(--ink-soft);}
+  footer a{text-decoration:none; font-size:.85rem; color:var(--ink-soft);}
+  footer a:hover{color:var(--ink);}
+  .cc-line{display:flex; align-items:center; gap:8px;}
+  .cc-icons{display:flex; align-items:center; gap:3px; flex-shrink:0;}
+  .cc-icons svg{width:20px; height:20px; display:block;}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html#inicio" class="brand">
+      <img src="assets/logo-mark.png" alt="ArranzER — LabVIEW Features" class="brand-logo">
+    </a>
+    <nav class="links">
+      <a href="index.html#comunidad">Comunidad</a>
+      <a href="proyectos.html" class="active">Proyecto</a>
+      <a href="index.html#nosotros">Nosotros</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="page-head">
+    <p class="eyebrow">
+      <a class="back-link" href="index.html">← volver al inicio</a> · // todos los repositorios
+    </p>
+    <h1>Proyectos de ArranzER</h1>
+    <p class="lead">Todo lo que compartimos como comunidad, actualizado en directo desde GitHub: código, ejemplos y herramientas para LabVIEW.</p>
+  </div>
+
+  <section>
+    <div class="toolbar">
+      <span id="count-tag" class="count-tag mono"></span>
+      <!-- EDITA AQUÍ si el nombre de la organización no es "ArranzER-LabVIEW" -->
+      <a class="btn" href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">
+        <span class="wire-dot"></span> Ver perfil en GitHub
+      </a>
+    </div>
+
+    <div id="repos" class="panel">
+      <p class="mono" style="margin:0; color:var(--ink-soft); font-size:.85rem;">Cargando repositorios…</p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="cc-line">
+      <span class="cc-icons" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M9.8 10.1c-.35-.7-.95-1.1-1.75-1.1-1.35 0-2.25 1-2.25 2.5s.9 2.5 2.25 2.5c.85 0 1.45-.4 1.8-1.15M17.7 10.1c-.35-.7-.95-1.1-1.75-1.1-1.35 0-2.25 1-2.25 2.5s.9 2.5 2.25 2.5c.85 0 1.45-.4 1.8-1.15" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M12 6.5 8 12h2.4v5.5h3.2V12H16z" fill="currentColor"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor" font-family="IBM Plex Mono, monospace">NC</text></svg>
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M7 9.5 12 6l5 3.5M7 14.5 12 18l5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+      </span>
+      <span><span id="year"></span> ArranzER — comunidad LabVIEW · contenido bajo
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
+      </span>
+    </p>
+    <a href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">github.com/ArranzER-LabVIEW</a>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // EDITA AQUÍ si el nombre de la organización/usuario no es "ArranzER-LabVIEW"
+  const GITHUB_ORG = 'ArranzER-LabVIEW';
+
+  const langColors = {
+    'LabVIEW':'#FED72B', 'JavaScript':'#f1e05a', 'Python':'#3572A5',
+    'C':'#555555', 'C++':'#f34b7d', 'HTML':'#e34c26', 'CSS':'#563d7c',
+    'Shell':'#89e051', 'Java':'#b07219'
+  };
+
+  function timeAgo(dateStr){
+    const diffMs = Date.now() - new Date(dateStr).getTime();
+    const days = Math.floor(diffMs / 86400000);
+    if(days < 1) return 'hoy';
+    if(days === 1) return 'hace 1 día';
+    if(days < 30) return `hace ${days} días`;
+    const months = Math.floor(days/30);
+    if(months < 12) return `hace ${months} ${months===1?'mes':'meses'}`;
+    const years = Math.floor(months/12);
+    return `hace ${years} ${years===1?'año':'años'}`;
+  }
+
+  async function loadRepos(){
+    const container = document.getElementById('repos');
+    const countTag = document.getElementById('count-tag');
+    try{
+      let res = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?sort=updated&per_page=100`);
+      if(res.status === 404){
+        res = await fetch(`https://api.github.com/users/${GITHUB_ORG}/repos?sort=updated&per_page=100`);
+      }
+      if(!res.ok) throw new Error(`GitHub respondió con estado ${res.status}`);
+      const repos = await res.json();
+
+      if(!Array.isArray(repos) || repos.length === 0){
+        countTag.textContent = '';
+        container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
+          Todavía no hay repositorios públicos en <strong>${GITHUB_ORG}</strong>.</p>`;
+        return;
+      }
+
+      countTag.textContent = `${repos.length} repositorio${repos.length===1?'':'s'} público${repos.length===1?'':'s'}`;
+
+      container.outerHTML = `<div class="repo-list" id="repos">` + repos.map(r => {
+        const color = langColors[r.language] || '#9CA3AF';
+        const desc = r.description ? r.description : 'Sin descripción todavía.';
+        const topics = (r.topics || []).slice(0, 6)
+          .map(t => `<span class="topic-pill">${t}</span>`).join('');
+        return `
+          <article class="repo-card" style="border-left-color:${color}">
+            <div class="top-row">
+              <h2 class="repo-name">
+                <span class="lang-dot" style="background:${color}"></span>
+                <a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a>
+                ${r.fork ? '<span class="fork-badge">fork</span>' : ''}
+              </h2>
+            </div>
+            <p class="desc">${desc}</p>
+            ${topics ? `<div class="repo-topics">${topics}</div>` : ''}
+            <div class="repo-meta">
+              <span>★ ${r.stargazers_count}</span>
+              <span>⑂ ${r.forks_count}</span>
+              <span>${r.language || 'Sin lenguaje detectado'}</span>
+              <span>actualizado ${timeAgo(r.pushed_at)}</span>
+            </div>
+            <div class="repo-actions">
+              <a href="${r.html_url}" target="_blank" rel="noopener">Ver código</a>
+              ${r.homepage ? `<a href="${r.homepage}" target="_blank" rel="noopener">Sitio del proyecto</a>` : ''}
+            </div>
+          </article>`;
+      }).join('') + `</div>`;
+
+    }catch(err){
+      countTag.textContent = '';
+      container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
+        No se han podido cargar los repositorios ahora mismo (${err.message}). Visita
+        <a href="https://github.com/${GITHUB_ORG}" target="_blank" rel="noopener">github.com/${GITHUB_ORG}</a> directamente.</p>`;
+    }
+  }
+  loadRepos();
+</script>
+
+</body>
+</html>
