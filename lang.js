@@ -5,8 +5,12 @@
  *  - Los elementos con data-i18n="clave" se traducen al inglés con el diccionario EN de abajo.
  *  - Si cambias un texto en español en el HTML, cambia también su versión en inglés aquí
  *    (busca la misma clave).
- *  - El idioma elegido se recuerda en el navegador. La primera vez se elige según el idioma
- *    del navegador (español → ES, cualquier otro → EN).
+ *  - El idioma es un ajuste de TODA la web. Se decide en este orden:
+ *      1. Parámetro de la dirección:  arranzer.com/?lang=en   (o ?lang=es)
+ *      2. Idioma elegido antes con el botón ES / EN (se recuerda en el navegador)
+ *      3. Idioma del navegador (español → ES, cualquier otro → EN)
+ *  - Todos los enlaces internos llevan ?lang=xx, así el idioma viaja de una página a otra
+ *    aunque el navegador no guarde datos, y se puede compartir un enlace ya en inglés.
  */
 (function () {
   'use strict';
@@ -157,7 +161,53 @@
   var STORE_KEY = 'arranzer-lang';
   var lang = 'es';
 
+  // Idioma pedido en la dirección (?lang=es / ?lang=en); null si no hay o no es válido
+  function fromUrl() {
+    try {
+      var v = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
+      if (v === 'es' || v === 'en') return v;
+    } catch (e) { /* navegador antiguo: se ignora */ }
+    return null;
+  }
+
+  // Añade (o sustituye) ?lang=xx en un enlace interno, respetando otros parámetros y el #ancla.
+  // Los enlaces externos (http…, mailto…) y los que solo son #ancla se dejan como están.
+  function withLang(href) {
+    if (!href || href.charAt(0) === '#' || /^[a-z][a-z0-9+.\-]*:/i.test(href) || href.indexOf('//') === 0) return href;
+    var hash = '', i = href.indexOf('#');
+    if (i >= 0) { hash = href.slice(i); href = href.slice(0, i); }
+    var query = '', j = href.indexOf('?');
+    if (j >= 0) { query = href.slice(j + 1); href = href.slice(0, j); }
+    var parts = query ? query.split('&').filter(function (p) { return p && p.split('=')[0] !== 'lang'; }) : [];
+    parts.push('lang=' + lang);
+    return href + '?' + parts.join('&') + hash;
+  }
+
+  function syncLinks() {
+    var links = document.querySelectorAll('a[href]');
+    for (var i = 0; i < links.length; i++) {
+      var a = links[i];
+      if (a.hasAttribute('data-href-en')) continue; // estos ya los gestiona applyStatic
+      if (!a.hasAttribute('data-href-base')) a.setAttribute('data-href-base', a.getAttribute('href'));
+      a.setAttribute('href', withLang(a.getAttribute('data-href-base')));
+    }
+  }
+
+  // Refleja el idioma en la barra de direcciones sin recargar la página
+  function updateAddress() {
+    try {
+      var u = new URL(window.location.href);
+      u.searchParams.set('lang', lang);
+      window.history.replaceState(null, '', u.pathname + u.search + u.hash);
+    } catch (e) { /* p. ej. abriendo el archivo en local: no pasa nada */ }
+  }
+
   function detect() {
+    var fromQuery = fromUrl();
+    if (fromQuery) {
+      try { localStorage.setItem(STORE_KEY, fromQuery); } catch (e) { /* ignorar */ }
+      return fromQuery;
+    }
     try {
       var saved = localStorage.getItem(STORE_KEY);
       if (saved === 'es' || saved === 'en') return saved;
@@ -203,6 +253,9 @@
     for (var b = 0; b < buttons.length; b++) {
       buttons[b].setAttribute('aria-pressed', buttons[b].getAttribute('data-set-lang') === lang ? 'true' : 'false');
     }
+
+    // Los enlaces internos llevan el idioma activo
+    syncLinks();
   }
 
   function setLang(code) {
@@ -210,6 +263,7 @@
     lang = code;
     try { localStorage.setItem(STORE_KEY, code); } catch (e) { /* ignorar */ }
     applyStatic();
+    updateAddress();
     document.dispatchEvent(new CustomEvent('langchange', { detail: { lang: lang } }));
   }
 
@@ -251,6 +305,7 @@
   window.ArranzLang = {
     get: function () { return lang; },
     set: setLang,
+    url: withLang, // para navegar por código: location.href = ArranzLang.url('proyectos.html')
     dyn: function (key) {
       var v = DYN[lang][key];
       if (typeof v === 'function') return v.apply(null, Array.prototype.slice.call(arguments, 1));
