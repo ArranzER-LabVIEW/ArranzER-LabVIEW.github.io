@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proyectos — ArranzER</title>
-<meta name="description" content="Todos los repositorios de la comunidad ArranzER en GitHub.">
+<title data-i18n="title_projects">Proyectos — ArranzER</title>
+<meta name="description" data-i18n-attr="content:meta_projects" content="Todos los repositorios de la comunidad ArranzER en GitHub.">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,9 +185,9 @@
       <img src="assets/logo-mark.png" alt="ArranzER — LabVIEW Features" class="brand-logo">
     </a>
     <nav class="links">
-      <a href="index.html#comunidad">Comunidad</a>
-      <a href="proyectos.html" class="active">Proyectos</a>
-      <a href="nosotros.html">Nosotros</a>
+      <a href="index.html#comunidad" data-i18n="nav_community">Comunidad</a>
+      <a href="proyectos.html" class="active" data-i18n="nav_projects">Proyectos</a>
+      <a href="nosotros.html" data-i18n="nav_about">Nosotros</a>
     </nav>
   </div>
 </header>
@@ -196,10 +196,10 @@
 
   <div class="page-head">
     <p class="eyebrow">
-      <a class="back-link" href="index.html">← volver al inicio</a> · // todos los repositorios
+      <a class="back-link" href="index.html" data-i18n="back_home">← volver al inicio</a> <span data-i18n="eyebrow_projects">· // todos los repositorios</span>
     </p>
-    <h1>Proyectos de ArranzER</h1>
-    <p class="lead">Todo lo que compartimos como comunidad, actualizado en directo desde GitHub: código, ejemplos y herramientas para LabVIEW.</p>
+    <h1 data-i18n="proj_title">Proyectos de ArranzER</h1>
+    <p class="lead" data-i18n="proj_lead">Todo lo que compartimos como comunidad, actualizado en directo desde GitHub: código, ejemplos y herramientas para LabVIEW.</p>
   </div>
 
   <section>
@@ -208,24 +208,26 @@
       <div class="toolbar-btns">
         <!-- EDITA AQUÍ si el nombre de la organización no es "ArranzER-LabVIEW" -->
         <a class="btn" href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">
-          <span class="wire-dot"></span> Ver perfil en GitHub
+          <span class="wire-dot"></span> <span data-i18n="btn_github">Ver perfil en GitHub</span>
         </a>
         <a class="btn btn-vipm" href="https://www.vipm.io/profile/arranzer-es/" target="_blank" rel="noopener">
-          <span class="wire-dot"></span> Ver comunidad en VIPM
+          <span class="wire-dot"></span> <span data-i18n="btn_vipm">Ver comunidad en VIPM</span>
         </a>
       </div>
     </div>
 
-    <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: array[]</p>
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span><span data-i18n="tag_array">tipo: array[]</span></p>
 
-    <div id="repos" class="panel">
-      <p class="mono" style="margin:0; color:var(--ink-soft); font-size:.85rem;">Cargando repositorios…</p>
+    <div id="repos-wrap">
+      <div class="panel">
+        <p class="mono" style="margin:0; color:var(--ink-soft); font-size:.85rem;">Cargando repositorios…</p>
+      </div>
     </div>
 
     <!-- ===================== PAQUETES VIPM ===================== -->
     <div class="pkg-section" id="vipm">
-      <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: array[]</p>
-      <h2>Paquetes en VIPM</h2>
+      <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span><span data-i18n="tag_array">tipo: array[]</span></p>
+      <h2 data-i18n="vipm_h2">Paquetes en VIPM</h2>
 
       <div class="repo-list">
         <!-- Para añadir un paquete nuevo, copia este bloque <article> entero y cambia los datos -->
@@ -235,24 +237,24 @@
               <a href="https://www.vipm.io/package/arranzer_lib_adjust_front_panel_vis_in_a_project/" target="_blank" rel="noopener">Adjust Front Panel VIs in a Project</a>
             </h2>
           </div>
-          <p class="desc">Ajusta los paneles frontales de todos los VIs de un proyecto a partir de la estructura de su panel de conexiones. Con ZAlign, alinea automáticamente los elementos del panel en muchos VIs a la vez, útil cuando cambia una typedef compartida.</p>
+          <p class="desc" data-i18n="pkg_desc">Ajusta los paneles frontales de todos los VIs de un proyecto a partir de la estructura de su panel de conexiones. Con ZAlign, alinea automáticamente los elementos del panel en muchos VIs a la vez, útil cuando cambia una typedef compartida.</p>
           <div class="repo-topics">
             <span class="topic-pill">DQMH</span>
             <span class="topic-pill">ZAlign</span>
           </div>
           <div class="repo-meta">
-            <span>versión 1.0.0.1</span>
-            <span>publicado el 28 ago 2026</span>
-            <span>LabVIEW 2023 Q3 o superior</span>
+            <span data-i18n="pkg_version">versión 1.0.0.1</span>
+            <span data-i18n="pkg_date">publicado el 28 ago 2026</span>
+            <span data-i18n="pkg_lv">LabVIEW 2023 Q3 o superior</span>
             <span>Windows · Mac · Linux</span>
           </div>
           <div class="repo-actions">
-            <a href="https://www.vipm.io/package/arranzer_lib_adjust_front_panel_vis_in_a_project/" target="_blank" rel="noopener">Ver en VIPM</a>
-            <a href="https://forums.vipm.io/forum/543-adjust-front-panel-vis-in-a-project-by-arranzer/" target="_blank" rel="noopener">Discusión</a>
+            <a href="https://www.vipm.io/package/arranzer_lib_adjust_front_panel_vis_in_a_project/" target="_blank" rel="noopener" data-i18n="pkg_view">Ver en VIPM</a>
+            <a href="https://forums.vipm.io/forum/543-adjust-front-panel-vis-in-a-project-by-arranzer/" target="_blank" rel="noopener" data-i18n="pkg_forum">Discusión</a>
           </div>
         </article>
       </div>
-      <p class="pkg-note">// lista mantenida a mano · todos los paquetes en vipm.io/profile/arranzer-es</p>
+      <p class="pkg-note" data-i18n="pkg_note">// lista mantenida a mano · todos los paquetes en vipm.io/profile/arranzer-es</p>
     </div>
   </section>
 
@@ -267,13 +269,14 @@
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor" font-family="IBM Plex Mono, monospace">NC</text></svg>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M7 9.5 12 6l5 3.5M7 14.5 12 18l5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       </span>
-      <span><span id="year"></span> ArranzER — comunidad LabVIEW · contenido bajo
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
+      <span><span id="year"></span> ArranzER — <span data-i18n="footer_text">comunidad LabVIEW · contenido bajo</span>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" data-href-en="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
       </span>
     </p>
     </div>
 </footer>
 
+<script src="lang.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -286,74 +289,90 @@
     'Shell':'#89e051', 'Java':'#b07219'
   };
 
-  function timeAgo(dateStr){
-    const diffMs = Date.now() - new Date(dateStr).getTime();
-    const days = Math.floor(diffMs / 86400000);
-    if(days < 1) return 'hoy';
-    if(days === 1) return 'hace 1 día';
-    if(days < 30) return `hace ${days} días`;
-    const months = Math.floor(days/30);
-    if(months < 12) return `hace ${months} ${months===1?'mes':'meses'}`;
-    const years = Math.floor(months/12);
-    return `hace ${years} ${years===1?'año':'años'}`;
+  const T = (key, ...args) => window.ArranzLang.dyn(key, ...args);
+
+  function esc(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  // Estado de la carga: así la lista se puede volver a pintar al cambiar de idioma
+  const state = { status:'loading', repos:[], errStatus:null, errMsg:'' };
+
+  function render(){
+    const wrap = document.getElementById('repos-wrap');
+    const countTag = document.getElementById('count-tag');
+    const msg = html => `<div class="panel"><p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">${html}</p></div>`;
+
+    if(state.status === 'loading'){
+      countTag.textContent = '';
+      wrap.innerHTML = msg(T('loading'));
+      return;
+    }
+    if(state.status === 'error'){
+      countTag.textContent = '';
+      const detail = state.errStatus ? T('httpError', state.errStatus) : esc(state.errMsg);
+      const link = `<a href="https://github.com/${GITHUB_ORG}" target="_blank" rel="noopener">github.com/${GITHUB_ORG}</a>`;
+      wrap.innerHTML = msg(T('error', detail, link));
+      return;
+    }
+    if(state.repos.length === 0){
+      countTag.textContent = '';
+      wrap.innerHTML = msg(T('none', GITHUB_ORG));
+      return;
+    }
+
+    countTag.textContent = T('count', state.repos.length);
+    wrap.innerHTML = `<div class="repo-list">` + state.repos.map(r => {
+      const color = langColors[r.language] || '#9CA3AF';
+      const desc = r.description ? esc(r.description) : T('noDesc');
+      const topics = (r.topics || []).slice(0, 6)
+        .map(t => `<span class="topic-pill">${esc(t)}</span>`).join('');
+      const days = Math.floor((Date.now() - new Date(r.pushed_at).getTime()) / 86400000);
+      const homepage = /^https?:\/\//i.test(r.homepage || '') ? r.homepage : '';
+      return `
+        <article class="repo-card" style="border-left-color:${color}">
+          <div class="top-row">
+            <h2 class="repo-name">
+              <span class="lang-dot" style="background:${color}"></span>
+              <a href="${esc(r.html_url)}" target="_blank" rel="noopener">${esc(r.name)}</a>
+              ${r.fork ? '<span class="fork-badge">fork</span>' : ''}
+            </h2>
+          </div>
+          <p class="desc">${desc}</p>
+          ${topics ? `<div class="repo-topics">${topics}</div>` : ''}
+          <div class="repo-meta">
+            <span>★ ${r.stargazers_count}</span>
+            <span>⑂ ${r.forks_count}</span>
+            <span>${r.language ? esc(r.language) : T('noLang')}</span>
+            <span>${T('updated', T('ago', days))}</span>
+          </div>
+          <div class="repo-actions">
+            <a href="${esc(r.html_url)}" target="_blank" rel="noopener">${T('viewCode')}</a>
+            ${homepage ? `<a href="${esc(homepage)}" target="_blank" rel="noopener">${T('projectSite')}</a>` : ''}
+          </div>
+        </article>`;
+    }).join('') + `</div>`;
   }
 
   async function loadRepos(){
-    const container = document.getElementById('repos');
-    const countTag = document.getElementById('count-tag');
     try{
       let res = await fetch(`https://api.github.com/orgs/${GITHUB_ORG}/repos?sort=updated&per_page=100`);
       if(res.status === 404){
         res = await fetch(`https://api.github.com/users/${GITHUB_ORG}/repos?sort=updated&per_page=100`);
       }
-      if(!res.ok) throw new Error(`GitHub respondió con estado ${res.status}`);
+      if(!res.ok){ state.status = 'error'; state.errStatus = res.status; render(); return; }
       const repos = await res.json();
-
-      if(!Array.isArray(repos) || repos.length === 0){
-        countTag.textContent = '';
-        container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
-          Todavía no hay repositorios públicos en <strong>${GITHUB_ORG}</strong>.</p>`;
-        return;
-      }
-
-      countTag.textContent = `${repos.length} repositorio${repos.length===1?'':'s'} público${repos.length===1?'':'s'}`;
-
-      container.outerHTML = `<div class="repo-list" id="repos">` + repos.map(r => {
-        const color = langColors[r.language] || '#9CA3AF';
-        const desc = r.description ? r.description : 'Sin descripción todavía.';
-        const topics = (r.topics || []).slice(0, 6)
-          .map(t => `<span class="topic-pill">${t}</span>`).join('');
-        return `
-          <article class="repo-card" style="border-left-color:${color}">
-            <div class="top-row">
-              <h2 class="repo-name">
-                <span class="lang-dot" style="background:${color}"></span>
-                <a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a>
-                ${r.fork ? '<span class="fork-badge">fork</span>' : ''}
-              </h2>
-            </div>
-            <p class="desc">${desc}</p>
-            ${topics ? `<div class="repo-topics">${topics}</div>` : ''}
-            <div class="repo-meta">
-              <span>★ ${r.stargazers_count}</span>
-              <span>⑂ ${r.forks_count}</span>
-              <span>${r.language || 'Sin lenguaje detectado'}</span>
-              <span>actualizado ${timeAgo(r.pushed_at)}</span>
-            </div>
-            <div class="repo-actions">
-              <a href="${r.html_url}" target="_blank" rel="noopener">Ver código</a>
-              ${r.homepage ? `<a href="${r.homepage}" target="_blank" rel="noopener">Sitio del proyecto</a>` : ''}
-            </div>
-          </article>`;
-      }).join('') + `</div>`;
-
+      state.repos = Array.isArray(repos) ? repos : [];
+      state.status = 'ok';
     }catch(err){
-      countTag.textContent = '';
-      container.innerHTML = `<p class="mono" style="margin:0;color:var(--ink-soft);font-size:.85rem;">
-        No se han podido cargar los repositorios ahora mismo (${err.message}). Visita
-        <a href="https://github.com/${GITHUB_ORG}" target="_blank" rel="noopener">github.com/${GITHUB_ORG}</a> directamente.</p>`;
+      state.status = 'error';
+      state.errMsg = err.message;
     }
+    render();
   }
+
+  document.addEventListener('langchange', render);
+  render();
   loadRepos();
 </script>
 

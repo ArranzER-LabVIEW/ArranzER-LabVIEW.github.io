@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ArranzER — Comunidad LabVIEW</title>
-<meta name="description" content="ArranzER: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
+<title data-i18n="title_index">ArranzER — Comunidad LabVIEW</title>
+<meta name="description" data-i18n-attr="content:meta_index" content="ArranzER: comunidad de desarrolladores LabVIEW. Proyectos, recursos y gente que conecta cables de verdad.">
 <link rel="icon" type="image/png" href="assets/logo-mark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -272,9 +272,9 @@
       <img src="assets/logo-mark.png" alt="ArranzER — LabVIEW Features" class="brand-logo">
     </a>
     <nav class="links">
-      <a href="#comunidad">Comunidad</a>
-      <a href="proyectos.html">Proyectos</a>
-      <a href="nosotros.html">Nosotros</a>
+      <a href="#comunidad" data-i18n="nav_community">Comunidad</a>
+      <a href="proyectos.html" data-i18n="nav_projects">Proyectos</a>
+      <a href="nosotros.html" data-i18n="nav_about">Nosotros</a>
     </nav>
   </div>
 </header>
@@ -283,14 +283,14 @@
 
   <!-- ===================== HERO ===================== -->
   <section id="inicio" class="hero">
-    <p class="eyebrow">// comunidad LabVIEW</p>
-    <h1>Cableamos ideas en <span class="accent">LabVIEW</span>.</h1>
-    <p class="lead">ArranzER es un punto de encuentro para gente que diseña, depura y comparte
+    <p class="eyebrow" data-i18n="hero_eyebrow">// comunidad LabVIEW</p>
+    <h1 data-i18n="hero_h1">Cableamos ideas en <span class="accent">LabVIEW</span>.</h1>
+    <p class="lead" data-i18n="hero_lead">ArranzER es un punto de encuentro para gente que diseña, depura y comparte
       instrumentación virtual. Código abierto, ejemplos reales y una comunidad pequeña que crece cable a cable.</p>
 
     <div class="diagram">
       <!-- Diagrama de bloques: 3 terminales conectados, estilo block diagram de LabVIEW -->
-      <svg viewBox="0 0 940 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama: Comunidad conectada a Proyecto en GitHub y a Miembros">
+      <svg viewBox="0 0 940 220" xmlns="http://www.w3.org/2000/svg" role="img" data-i18n-attr="aria-label:diagram_aria" aria-label="Diagrama: Comunidad conectada a Proyecto en GitHub y a Miembros">
         <!-- cables -->
         <path class="wire w1" d="M 170,70 C 280,70 280,70 330,70" />
         <path class="wire w2" d="M 170,150 C 280,150 280,150 330,150" />
@@ -301,48 +301,48 @@
         <!-- terminal: COMUNIDAD -->
         <g class="term" onclick="window.location.hash='comunidad'">
           <rect class="node" x="40" y="40" width="130" height="60" rx="6"/>
-          <text class="node-label" x="56" y="65">COMUNIDAD</text>
+          <text class="node-label" x="56" y="65" data-i18n="svg_community">COMUNIDAD</text>
           <text class="node-sub" x="56" y="82">arranzer.com</text>
         </g>
 
         <!-- terminal central: PROYECTO -->
         <g class="term" onclick="window.location.href='proyectos.html'">
           <rect class="node" x="330" y="40" width="260" height="140" rx="6"/>
-          <text class="node-label" x="350" y="68">PROYECTO_PRINCIPAL.vi</text>
-          <text class="node-sub" x="350" y="86">repositorio · GitHub</text>
-          <text class="node-sub" x="350" y="155">entradas: ideas, bugs, PRs</text>
-          <text class="node-sub" x="350" y="170">salidas: releases, docs</text>
+          <text class="node-label" x="350" y="68" data-i18n="svg_main">PROYECTO_PRINCIPAL.vi</text>
+          <text class="node-sub" x="350" y="86" data-i18n="svg_repo">repositorio · GitHub</text>
+          <text class="node-sub" x="350" y="155" data-i18n="svg_inputs">entradas: ideas, bugs, PRs</text>
+          <text class="node-sub" x="350" y="170" data-i18n="svg_outputs">salidas: releases, docs</text>
         </g>
 
         <!-- terminal: GITHUB -->
         <g class="term" onclick="window.open('https://github.com/ArranzER-LabVIEW','_blank')">
           <rect class="node" x="770" y="40" width="130" height="60" rx="6"/>
           <text class="node-label" x="788" y="65">GITHUB</text>
-          <text class="node-sub" x="788" y="82">ver código</text>
+          <text class="node-sub" x="788" y="82" data-i18n="svg_view_code">ver código</text>
         </g>
 
         <!-- terminal: MIEMBROS -->
         <g class="term" onclick="window.location.href='nosotros.html'">
           <rect class="node" x="770" y="120" width="130" height="60" rx="6"/>
-          <text class="node-label" x="788" y="145">MIEMBROS</text>
+          <text class="node-label" x="788" y="145" data-i18n="svg_members">MIEMBROS</text>
           <text class="node-sub" x="788" y="162">Jon · Ederson</text>
         </g>
       </svg>
 
       <div class="legend">
-        <span><i style="background:var(--wire-int)"></i> Comunidad → Proyecto</span>
-        <span><i style="background:var(--wire-bool)"></i> Proyecto → GitHub</span>
-        <span><i style="background:var(--wire-string)"></i> Proyecto → Miembros</span>
+        <span><i style="background:var(--wire-int)"></i> <span data-i18n="leg_1">Comunidad → Proyecto</span></span>
+        <span><i style="background:var(--wire-bool)"></i> <span data-i18n="leg_2">Proyecto → GitHub</span></span>
+        <span><i style="background:var(--wire-string)"></i> <span data-i18n="leg_3">Proyecto → Miembros</span></span>
       </div>
     </div>
   </section>
 
   <!-- ===================== COMUNIDAD ===================== -->
   <section id="comunidad">
-    <p class="section-tag"><span class="swatch" style="background:var(--wire-string)"></span>tipo: string</p>
-    <h2>¿Qué es ArranzER?</h2>
+    <p class="section-tag"><span class="swatch" style="background:var(--wire-string)"></span><span data-i18n="tag_string">tipo: string</span></p>
+    <h2 data-i18n="about_h2">¿Qué es ArranzER?</h2>
     <div class="panel">
-      <p style="margin:0; color:var(--ink-soft);">
+      <p style="margin:0; color:var(--ink-soft);" data-i18n="about_p">
         <!-- EDITA AQUÍ: cuenta en 2-3 frases qué es la comunidad, a quién va dirigida
              y qué pueden encontrar (ejemplos de código, foro, eventos, etc.) -->
         Somos un grupo de desarrolladores de LabVIEW que comparte proyectos, patrones de diseño
@@ -363,13 +363,14 @@
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><text x="12" y="15.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="currentColor" font-family="IBM Plex Mono, monospace">NC</text></svg>
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.4"/><path d="M7 9.5 12 6l5 3.5M7 14.5 12 18l5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
       </span>
-      <span><span id="year"></span> ArranzER — comunidad LabVIEW · contenido bajo
-        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
+      <span><span id="year"></span> ArranzER — <span data-i18n="footer_text">comunidad LabVIEW · contenido bajo</span>
+        <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es" data-href-en="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>
       </span>
     </p>
     </div>
 </footer>
 
+<script src="lang.js"></script>
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
