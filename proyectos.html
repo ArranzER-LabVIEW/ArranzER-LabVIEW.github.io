@@ -115,6 +115,14 @@
   }
   .btn:hover{background:#000; transform:translateY(-1px);}
   .btn .wire-dot{width:8px;height:8px;border-radius:50%;background:var(--wire-int);}
+  .btn.btn-vipm .wire-dot{background:var(--wire-float);}
+  .toolbar-btns{display:flex; gap:10px; flex-wrap:wrap;}
+
+  .pkg-section{margin-top:44px;}
+  .pkg-section h2{margin:0 0 18px; font-size:1.5rem; font-weight:700;}
+  .pkg-note{
+    margin:14px 0 0; font-family:'IBM Plex Mono', monospace; font-size:.74rem; color:var(--ink-soft);
+  }
 
   /* ---- tarjetas extendidas de repos ---- */
   .repo-list{display:flex; flex-direction:column; gap:16px;}
@@ -197,16 +205,54 @@
   <section>
     <div class="toolbar">
       <span id="count-tag" class="count-tag mono"></span>
-      <!-- EDITA AQUÍ si el nombre de la organización no es "ArranzER-LabVIEW" -->
-      <a class="btn" href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">
-        <span class="wire-dot"></span> Ver perfil en GitHub
-      </a>
+      <div class="toolbar-btns">
+        <!-- EDITA AQUÍ si el nombre de la organización no es "ArranzER-LabVIEW" -->
+        <a class="btn" href="https://github.com/ArranzER-LabVIEW" target="_blank" rel="noopener">
+          <span class="wire-dot"></span> Ver perfil en GitHub
+        </a>
+        <a class="btn btn-vipm" href="https://www.vipm.io/profile/arranzer-es/" target="_blank" rel="noopener">
+          <span class="wire-dot"></span> Ver comunidad en VIPM
+        </a>
+      </div>
     </div>
 
     <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: array[]</p>
 
     <div id="repos" class="panel">
       <p class="mono" style="margin:0; color:var(--ink-soft); font-size:.85rem;">Cargando repositorios…</p>
+    </div>
+
+    <!-- ===================== PAQUETES VIPM ===================== -->
+    <div class="pkg-section" id="vipm">
+      <p class="section-tag"><span class="swatch" style="background:var(--wire-int)"></span>tipo: array[]</p>
+      <h2>Paquetes en VIPM</h2>
+
+      <div class="repo-list">
+        <!-- Para añadir un paquete nuevo, copia este bloque <article> entero y cambia los datos -->
+        <article class="repo-card" style="border-left-color:var(--wire-float)">
+          <div class="top-row">
+            <h2 class="repo-name">
+              <a href="https://www.vipm.io/package/arranzer_lib_adjust_front_panel_vis_in_a_project/" target="_blank" rel="noopener">Adjust Front Panel VIs in a Project</a>
+            </h2>
+          </div>
+          <p class="desc">Ajusta los paneles frontales de todos los VIs de un proyecto a partir de la estructura de su panel de conexiones. Con ZAlign, alinea automáticamente los elementos del panel en muchos VIs a la vez, útil cuando cambia una typedef compartida.</p>
+          <div class="repo-topics">
+            <span class="topic-pill">DQMH</span>
+            <span class="topic-pill">ZAlign</span>
+          </div>
+          <div class="repo-meta">
+            <span>versión 1.0.0.1</span>
+            <span>publicado el 28 ago 2026</span>
+            <span>LabVIEW 2023 Q3 o superior</span>
+            <span>Windows · Mac · Linux</span>
+          </div>
+          <div class="repo-actions">
+            <a href="https://www.vipm.io/package/arranzer_lib_adjust_front_panel_vis_in_a_project/" target="_blank" rel="noopener">Ver en VIPM</a>
+            <a href="https://forums.vipm.io/forum/543-adjust-front-panel-vis-in-a-project-by-arranzer/" target="_blank" rel="noopener">Discusión</a>
+          </div>
+        </article>
+      </div>
+      <p class="pkg-note">// lista mantenida a mano · todos los paquetes en vipm.io/profile/arranzer-es</p>
     </div>
   </section>
 
